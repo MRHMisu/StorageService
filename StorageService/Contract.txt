@@ -1,0 +1,7 @@
+﻿GetFiles()
+GetFileByName()
+GetFileWithByExtention()
+
+GetDirectoryByName()
+GetDirectories()
+GetDirectoryWithFiles()
