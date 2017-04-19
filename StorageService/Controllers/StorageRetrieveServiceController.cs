@@ -12,20 +12,30 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 
 namespace StorageService.Controllers
 {
+
     [RoutePrefix("api/storage")]
     public class StorageRetrieveServiceController : ApiController
+
     {
 
         private IStorageRetrieveService _storageRetrieveService = new StorageRetrieveService();
 
 
 
+        /// <summary>  
+        /// Get Files From Access Directory
+        /// </summary>  
+        /// <param name="accessId"></param>
+
         [HttpPost]
         [Route("getFiles")]
+        [ResponseType(typeof(IEnumerable<StorageFile>))]
         public IHttpActionResult GetFiles([FromBody] string accessId)
+
         {
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
 
@@ -39,9 +49,16 @@ namespace StorageService.Controllers
         }
 
 
+        /// <summary>  
+        /// Get Directories From Access Directory
+        /// </summary>  
+        /// <param name="accessId"></param>
+
         [HttpPost]
         [Route("getDirectories")]
+
         public IHttpActionResult GetDirectories([FromBody] string accessId)
+
         {
 
             if (accessId != null)
