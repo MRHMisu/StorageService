@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
+
 namespace StorageService.Controllers
 {
 
@@ -60,36 +61,43 @@ namespace StorageService.Controllers
 
         }
 
+
+        /// <summary>  
+        /// Uplaod File
+        /// </summary>  
+        /// <param name="request"></param>
+        [HttpPost]
+        [Route("uploadFile")]
+        [ImportFileParamType.SwaggerFormAttribute("ImportImage", "Upload image file")]
+        public async Task<HttpResponseMessage> UploadFile()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            var data = await Request.Content.ParseMultipartAsync();
+
+            if (data.Files.ContainsKey("image"))
+            {
+                long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                byte[] file = data.Files["image"].File;
+                var fileName = data.Files["image"].Filename;
+                string path = HttpContext.Current.Server.MapPath("~/FileStorage/" + milliseconds + "-" + fileName);
+                File.WriteAllBytes(path, file);
+            }
+
+            if (data.Fields.ContainsKey("description"))
+            {
+                var description = data.Fields["description"].Value;
+            }
+
+            return new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("FileUploaded Successfully")
+            };
+        }
         
-        //public async Task<HttpResponseMessage> UploadFile(HttpRequestMessage request)
-        //{
-        //    if (!request.Content.IsMimeMultipartContent())
-        //    {
-        //        throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-        //    }
-
-        //    var data = await Request.Content.ParseMultipartAsync();
-
-        //    if (data.Files.ContainsKey("image"))
-        //    {
-        //        long milliseconds = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
-        //        byte[] file = data.Files["image"].File;
-        //        var fileName = data.Files["image"].Filename;
-        //        string path = HttpContext.Current.Server.MapPath("~/FileStorage/" + milliseconds + "-" + fileName);
-        //        File.WriteAllBytes(path, file);
-        //    }
-
-        //    if (data.Fields.ContainsKey("description"))
-        //    {
-        //        var description = data.Fields["description"].Value;
-        //    }
-
-        //    return new HttpResponseMessage(HttpStatusCode.OK)
-        //    {
-        //        Content = new StringContent("FileUploaded Successfully")
-        //    };
-        //}
-
 
     }
 }

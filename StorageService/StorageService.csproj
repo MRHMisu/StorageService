@@ -101,6 +101,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ConsumerModel\ImportFileParamType.cs" />
     <Compile Include="ConsumerModel\ParameterData.cs" />
     <Compile Include="Controllers\StorageModifyServiceController.cs" />
     <Compile Include="Controllers\StorageRetrieveServiceController.cs" />
