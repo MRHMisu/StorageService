@@ -95,6 +95,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Contract.txt" />
+    <Content Include="Documentation\css\themes\2.x\theme-feeling-blue.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-flattop.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-material.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-monokai.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-muted.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-newspaper.css" />
+    <Content Include="Documentation\css\themes\2.x\theme-outline.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-feeling-blue.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-flattop.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-material.css" />
+    <EmbeddedResource Include="Documentation\css\themes\3.x\theme-monokai.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-muted.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-newspaper.css" />
+    <Content Include="Documentation\css\themes\3.x\theme-outline.css" />
+    <EmbeddedResource Include="Documentation\html\index.html" />
+    <EmbeddedResource Include="Documentation\html\theme-material.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
